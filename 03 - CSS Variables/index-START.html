@@ -18,9 +18,15 @@
     <input id="base" type="color" name="base" value="#ffc600">
   </div>
 
-  <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+  <img id='image' src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+
+    img {
+      padding: 10px;
+      background: #ffc600;
+      filter: blur(10px);
+    }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -45,6 +51,26 @@
   </style>
 
   <script>
+    let blur = document.getElementById('blur');    
+    let spacing = document.getElementById('spacing');
+    let base = document.getElementById('base');
+    let image = document.getElementById('image');
+    let inputs = document.getElementsByTagName('input');
+    // console.log(inputs);
+    // console.log(blur, spacing, base, image);
+    console.log(spacing.value);
+
+    function handleEvent() {
+      console.log(this.value);
+    }
+
+    for (let i = 0; i < inputs.length; i++) {
+      let current = inputs[i];
+      current.addEventListener('change', handleEvent);
+      current.addEventListener('mousemove', handleEvent);
+    }
+
+
   </script>
 
 </body>
