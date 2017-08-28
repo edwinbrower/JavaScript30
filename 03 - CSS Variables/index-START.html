@@ -28,6 +28,10 @@
       filter: blur(10px);
     }
 
+    .hl {
+      color: #ffc600;
+    }
+
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -53,6 +57,8 @@
   <script>
     let image = document.getElementById('image');
     let inputs = document.getElementsByTagName('input');
+    let hl = document.getElementsByClassName('hl')[0];
+    console.log(hl);
 
     function handleEvent() {
       let suffix = this.dataset.sizing || '';
@@ -62,6 +68,9 @@
         suffix += ')';
       }
       image.style.setProperty(`${this.name}`, prefix + this.value + suffix);
+      if (this.name === 'background') {
+        hl.style.color = this.value;
+      }
     }
 
     for (let i = 0; i < inputs.length; i++) {
