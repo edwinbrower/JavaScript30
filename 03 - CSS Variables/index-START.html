@@ -58,9 +58,8 @@
     let image = document.getElementById('image');
     let inputs = document.getElementsByTagName('input');
     let hl = document.getElementsByClassName('hl')[0];
-    console.log(hl);
 
-    function handleEvent() {
+    let handleEvent = function() { // this isn't working with ES6 notation.... not sure why.
       let suffix = this.dataset.sizing || '';
       let prefix = '';
       if (this.name === 'filter') {
@@ -71,7 +70,7 @@
       if (this.name === 'background') {
         hl.style.color = this.value;
       }
-    }
+    };
 
     for (let i = 0; i < inputs.length; i++) {
       let current = inputs[i];
