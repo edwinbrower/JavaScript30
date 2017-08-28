@@ -9,13 +9,13 @@
 
   <div class="controls">
     <label for="spacing">Spacing:</label>
-    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+    <input id="spacing" type="range" name="padding" min="10" max="200" value="10" data-sizing="px">
 
     <label for="blur">Blur:</label>
-    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+    <input id="blur" type="range" name="filter" min="0" max="25" value="10" data-sizing="px">
 
     <label for="base">Base Color</label>
-    <input id="base" type="color" name="base" value="#ffc600">
+    <input id="base" type="color" name="background" value="#ffc600">
   </div>
 
   <img id='image' src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
@@ -51,17 +51,17 @@
   </style>
 
   <script>
-    let blur = document.getElementById('blur');    
-    let spacing = document.getElementById('spacing');
-    let base = document.getElementById('base');
     let image = document.getElementById('image');
     let inputs = document.getElementsByTagName('input');
-    // console.log(inputs);
-    // console.log(blur, spacing, base, image);
-    console.log(spacing.value);
 
     function handleEvent() {
-      console.log(this.value);
+      let suffix = this.dataset.sizing || '';
+      let prefix = '';
+      if (this.name === 'filter') {
+        prefix = 'blur(';
+        suffix += ')';
+      }
+      image.style.setProperty(`${this.name}`, prefix + this.value + suffix);
     }
 
     for (let i = 0; i < inputs.length; i++) {
@@ -69,8 +69,6 @@
       current.addEventListener('change', handleEvent);
       current.addEventListener('mousemove', handleEvent);
     }
-
-
   </script>
 
 </body>
